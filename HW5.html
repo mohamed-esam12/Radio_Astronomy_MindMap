@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radio Astronomy – Lecture 5 Mind Map</title>
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--ink:#16203a;--mute:#56607a;--line:#b9c2dc;--node:#fff;--sh:0 12px 32px rgba(22,32,58,.18);--grid:#dfe5f3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1326;--card:#172042;--ink:#e9eefc;--mute:#9ca8cb;--line:#3a4872;--node:#1b2548;--sh:0 12px 32px rgba(0,0,0,.55);--grid:#18213f}}
+:root[data-theme="dark"]{--bg:#0d1326;--card:#172042;--ink:#e9eefc;--mute:#9ca8cb;--line:#3a4872;--node:#1b2548;--sh:0 12px 32px rgba(0,0,0,.55);--grid:#18213f}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;overflow:hidden}
+header{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 14px;background:var(--card);border-bottom:1px solid var(--line);z-index:5}
+h1{font:700 17px/1.2 Georgia,"Times New Roman",serif;margin:0;flex:1 1 220px}
+h1 small{display:block;font:400 12px "Segoe UI",system-ui,sans-serif;color:var(--mute)}
+input{flex:0 1 180px;min-width:110px;padding:7px 11px;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+button{font:inherit;font-size:13px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:2px solid #1f8ef1;outline-offset:2px}
+#prog{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute)}
+#bar{width:90px;height:7px;border-radius:4px;background:var(--line);overflow:hidden}
+#bar i{display:block;height:100%;width:0;background:#2fb67c;transition:width .4s}
+main{flex:1;position:relative;min-height:0}
+svg{width:100%;height:100%;display:block;touch-action:none;cursor:grab;background-image:radial-gradient(var(--grid) 1.2px,transparent 1.2px);background-size:26px 26px}
+svg.pan{cursor:grabbing}
+.edge{fill:none;stroke-width:2.2;opacity:.6}
+.node{cursor:pointer}
+.node rect{fill:var(--node);stroke-width:2;transition:filter .2s}
+.node:hover rect{filter:drop-shadow(0 3px 7px rgba(0,0,0,.3))}
+.node text{fill:var(--ink);font-size:13px;text-anchor:middle;pointer-events:none}
+.node.b text{font-weight:700;font-size:14.5px;fill:#fff}
+.node.b rect{stroke:none}
+.node.r rect{fill:#16203a;stroke:#1f8ef1}.node.r text{fill:#fff;font:700 16px Georgia,serif}
+.node.sel rect{stroke-width:4}
+.node.dim{opacity:.22}
+.node.hit rect{stroke:#f2a900;stroke-width:4}
+.node.pulse rect{animation:pu .5s}
+@keyframes pu{50%{transform:scale(1.07);transform-box:fill-box;transform-origin:center}}
+.tog circle{fill:#fff;stroke:var(--line)}.tog text{fill:#16203a;font-weight:700;font-size:14px}
+.ck{fill:#2fb67c}.ck-t{fill:#fff;font-size:11px;font-weight:700;text-anchor:middle;pointer-events:none}
+#panel{position:absolute;top:12px;right:12px;bottom:12px;width:340px;max-width:calc(100% - 24px);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);overflow:auto;padding:18px 18px 20px;transform:translateX(calc(100% + 24px));transition:transform .3s;z-index:4}
+#panel.open{transform:none}
+#panel .x{position:absolute;top:10px;right:10px}
+#panel .tag{display:inline-block;color:#fff;font-size:12px;padding:2px 10px;border-radius:12px;margin-bottom:8px}
+#panel h2{font:700 21px/1.25 Georgia,serif;margin:0 28px 8px 0}
+#panel p{margin:0 0 12px;color:var(--ink)}
+#panel h3{font-size:13px;margin:14px 0 6px;color:var(--mute);font-weight:600}
+#panel ul{margin:0;padding-left:20px}#panel li{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips button{border-radius:14px;font-size:12px}
+#done{margin-top:16px;width:100%;padding:9px;font-weight:600}
+#done.on{background:#2fb67c;color:#fff;border-color:#2fb67c}
+#hint{position:absolute;left:12px;bottom:12px;font-size:12px;color:var(--mute);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;max-width:300px}
+@media (max-width:640px){#panel{top:auto;left:8px;right:8px;bottom:8px;width:auto;max-width:none;max-height:58%;transform:translateY(calc(100% + 16px))}#hint{display:none}}
+svg{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.node{transition:opacity .3s}.node>g{transition:transform .2s;transform-box:fill-box;transform-origin:center}
+.node:hover>g{transform:scale(1.05)}
+.in{animation:in .6s cubic-bezier(.2,.9,.3,1.2) backwards}@keyframes in{from{opacity:0;transform:scale(.2)}}
+.node.sel>g{animation:pop .5s}@keyframes pop{40%{transform:scale(1.16)}}
+.node.r rect{animation:gl 3.2s ease-in-out infinite}@keyframes gl{50%{filter:drop-shadow(0 0 14px #1f8ef1)}}
+.edge.flow{opacity:1;stroke-width:3.4;stroke-dasharray:7 7;animation:fl 1s linear infinite}@keyframes fl{to{stroke-dashoffset:-14}}
+.ring{fill:none;stroke:#f2a900;stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:rg .45s linear forwards;pointer-events:none}@keyframes rg{to{stroke-dashoffset:0}}
+.rip{fill:none;stroke-width:4;pointer-events:none;transform-box:fill-box;transform-origin:center;animation:rp .85s ease-out forwards}@keyframes rp{from{transform:scale(.3);opacity:.9}to{transform:scale(2.6);opacity:0}}
+#tip{position:fixed;display:none;max-width:240px;background:var(--ink);color:var(--bg);font-size:12.5px;line-height:1.4;padding:8px 11px;border-radius:9px;pointer-events:none;z-index:9;box-shadow:var(--sh)}
+#tb{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:none;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:6px 10px;box-shadow:var(--sh);z-index:6}#tc{font-size:13px;min-width:56px;text-align:center;color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Radio Astronomy – Lecture 5<small>A415 Radio Astronomy – Dr. Reham El-Kholy</small></h1>
+  <input id="q" type="search" placeholder="Search concepts…" aria-label="Search concepts">
+  <button id="ex">Expand all</button><button id="co">Collapse</button><button id="fit">Fit</button>
+  <button id="zi" aria-label="Zoom in">+</button><button id="zo" aria-label="Zoom out">−</button>
+  <button id="tr">▶ Guided tour</button><button id="th" aria-label="Toggle theme">Theme</button>
+  <div id="prog"><span id="pt">0/0 studied</span><div id="bar"><i></i></div></div>
+</header>
+<main>
+  <svg id="sv" role="img" aria-label="Mind map of Lecture 5"><g id="g"></g></svg>
+  <div id="hint">Tap a node for its summary. Press and hold to focus it. Drag to move, scroll to zoom, arrow keys step through the tour.</div>
+  <aside id="panel" aria-live="polite"></aside>
+  <div id="tip"></div>
+  <div id="tb"><button id="pv" aria-label="Previous">◀</button><span id="tc"></span><button id="nx" aria-label="Next">▶</button><button id="te" aria-label="End tour">✕</button></div>
+</main>
+<script>
+const COL=["#e4572e","#1f7fe0","#1f9d6b","#8b4fd8","#c77d00"];
+const T=[
+"Radio Astronomy – Lecture 5","Overview: how astronomers found discrete radio sources, built interferometers to sharpen their view, and used source counts to show that the Universe evolves.",["Radio sources: stars, or galaxies? → quasars","Interferometers give high angular resolution","Source counts reveal an evolving Universe","Bright radio sources are black-hole powered galaxies"],
+[
+["Radio Stars & Sources","Early radio maps showed a broad glow plus point-like “radio stars”. Working out what they really were led to quasars.",["Two kinds of emission: broad and discrete","Where they sit on the sky gives a clue to distance","Matching them with optical objects was hard","They turned out to be far, bright and compact"],[
+["Broad vs Discrete","Radio emission comes as a broad glow along the Milky Way and as separate, compact discrete sources.",["Broad region: cosmic rays and magnetic fields in the galaxy","Extended sources: supernova remnants","Discrete sources need good angular resolution to pin down"]],
+["Sky Distribution","Sources in the Milky Way disk are Galactic; the radio “stars” are spread uniformly in all directions.",["Milky Way disk: concentrated glow","Uniform in all directions: no concentration to the disk","Either quite close (nearby stars?) or very far (galaxies?)","Uniformity points to distant, extragalactic objects"]],
+["Optical Cross-matching","To learn what a source is, match it with an optical object. Early radio telescopes had poor angular resolution.",["Beamwidth = 60λ/D (degrees, λ and D in the same units)","Large beam = many optical candidates in the error box","This pushed the development of interferometers"]],
+["Radio “Stars” = Galaxies","The mystery sources were not stars but galaxies: very distant, but so powerful that they shine brightly in radio.",["No concentration to the Milky Way disk","Very small angular size","Strong radio emission","Further and (some) smaller, but brighter!"]],
+["Stellar Crisis → Quasars","Optical counterparts looked like stars, yet their spectra were puzzling, so astronomers called them quasi-stellar objects.",["2 components (2 spots) seen in radio","No recognisable spectral lines to measure the shift","Needed cooperation between radio and optical teams","Mixed results at first","Quasi-stellar objects (quasars) powered by SuperMassive Black Holes (SMBH)"]]
+]],
+["Interferometers","Linking several dishes gives the resolution of a much larger telescope: the separation (baseline), not one dish size, sets the detail.",["Single dish: beamwidth = 60λ/D","Two dishes + delay: signals added in step","Baseline sets the resolution","Cost and practicality limit the size of dishes"],[
+["Single Dish Limit","A parabolic dish reflects parallel rays to its focus F. Its resolution is limited by its diameter D.",["Beam width = 60λ/D","Bigger D or shorter wavelength gives sharper beam","A huge dish is financially and practically limited"]],
+["Two-dish Principle","Two small dishes act like two distant pieces of one giant dish. Each has a receiver; a delay lines up the signals.",["Receiver at each dish, then a delay unit and combiner","Same wire length keeps the signals in phase","Delay compensates for the different arrival time"]],
+["Baseline & Fringes","The baseline is the distance between dishes. As the sky turns, the output rises and falls in a pattern of fringes.",["Fringe plot: signal level vs time as the source crosses the beam","Baseline and beamwidth are linked","Longer baseline = narrower fringes = finer detail"]],
+["Resolution Rule","Angular resolution improves with a larger baseline and a shorter wavelength.",["Higher angular resolution than any single affordable dish","Wavelength vs baseline: compare λ with B (about λ/B)","Practical limits: money, cables, terrain"]],
+["First Interferometers","Early arrays that proved the idea.",["The Mills Cross","Half-mile telescope","Both sharpened radio positions so sources could be matched with optical objects"]]
+]],
+["Surveys & Flux Density","Surveys map the sky and list sources. Flux density is the way their strength is compared.",["Surveys give catalogues of many sources","Flux density = brightness × angular size","Temperature types: brightness, physical, antenna"],[
+["Radio Surveys","Systematic maps of large areas of sky that reveal thousands of point-like sources and some extended ones.",["Mostly dot-like sources, a few extended shapes","Gives the numbers needed for source counts"]],
+["Flux Density","How much radio power we receive per unit area and frequency. It describes the source, not the telescope.",["Proportional to average brightness × angular size","Doesn’t depend on antenna beam size","Follows the inverse square law with distance","A small bright source and a big dim one can have the same flux density"]],
+["Types of Temperature","Three different “temperatures” are used in radio astronomy.",["Brightness temperature: the temperature of a blackbody giving the same brightness","Physical temperature: the real temperature of the object","Antenna temperature: what the telescope measures"]]
+]],
+["Source Counts & Cosmology","Counting radio sources at different brightnesses shows how the Universe changed over time.",["More faint sources than bright ones","Faint = far = long ago","Peak about 6 billion years after the Big Bang"],[
+["Counting Sources","Expect a few bright (near) objects and many more faint (distant) ones.",["We should see many more faint sources than bright ones","Each fainter step reaches a larger volume of space"]],
+["Looking Back in Time","Light takes time to travel, so distant sources show the past.",["Faint sources are distant and therefore older views","Galaxy “adolescence” was a mercifully short phase"]],
+["Peak at ~6 Gyr","Galaxies go wild at about 6 billion years after the Big Bang and put out huge amounts of energy.",["Greatest number of bright radio sources: about 6 Gyr after the Big Bang","That is more than 7 billion years ago","Now locally calm"]],
+["Evolving Universe","The Universe is not in a steady state.",["It evolves through stages","The radio-source era is a phase that is now past"]]
+]],
+["Active Galaxies","Bright radio sources are all galaxies powered by black holes, viewed in different ways and stages.",["Black holes power them","Many names, one phenomenon","Two possible engines"],[
+["Black-hole Powered","All bright radio sources are associated with galaxies powered by black holes.",["Active galactic nuclei at the core","Enormous energy output"]],
+["The Galaxy Zoo","Many peculiar galaxy types seen in radio.",["Radio galaxies; giant radio sources in ellipticals","Radio-loud and radio-quiet quasars","Seyfert galaxies, blazars, LINERs, starbursts"]],
+["One Phenomenon","The zoo is probably one phenomenon seen from different angles and at different stages.",["Different perspectives","Probably different stages of development"]],
+["Two Possible Engines","Two possible sources for the activity.",["Extremely massive black hole at the center","Extreme bursts of star formation (starburst galaxies)"]]
+]]
+]];
+const N=[],root={id:0,t:T[0],s:T[1],p:T[2],ch:[],c:"#1f8ef1",lvl:0};N.push(root);
+T[3].forEach((b,i)=>{const n={id:N.length,t:(i+1)+". "+b[0],s:b[1],p:b[2],ch:[],c:COL[i],lvl:1,par:root,side:[1,-1,1,-1,1][i],open:true};N.push(n);root.ch.push(n);
+ b[3].forEach(l=>{const k={id:N.length,t:l[0],s:l[1],p:l[2],ch:[],c:COL[i],lvl:2,par:n};N.push(k);n.ch.push(k)})});
+const $=id=>document.getElementById(id),svg=$("sv"),g=$("g"),NS="http://www.w3.org/2000/svg";
+let done={},sel=null,V={x:0,y:0,k:1},query="",intro=true,ti=-1;const tip=$("tip");
+try{done=JSON.parse(localStorage.getItem("l5done")||"{}")}catch(e){}
+const W=n=>n.lvl==0?210:Math.max(n.lvl==1?130:92,n.t.length*(n.lvl==1?8.4:7)+30),H=n=>n.lvl==0?46:n.lvl==1?40:32;
+function layout(){root.x=0;root.y=0;
+ [1,-1].forEach(sd=>{const bs=root.ch.filter(b=>b.side==sd);let y=0;const slot=48,gap=34;
+  bs.forEach(b=>{const k=b.open?b.ch.length:1;b.y0=y;b.h=Math.max(1,k)*slot;y+=b.h+gap});
+  const tot=y-gap;
+  bs.forEach(b=>{const top=b.y0-tot/2;b.x=sd*250;b.y=top+b.h/2-slot/2+slot/2;
+   b.ch.forEach((c,j)=>{c.vis=b.open;c.x=sd*540;c.y=top+j*slot+slot/2})})})}
+const vis=n=>n.lvl<2||n.par.open;
+function draw(){layout();let h="";
+ N.filter(n=>n.lvl&&vis(n)).forEach(n=>{const p=n.par,sd=n.x>0?1:-1,x1=p.x+sd*W(p)/2,x2=n.x-sd*W(n)/2,m=(x1+x2)/2;
+  h+=`<path class="edge${sel&&(sel==n||sel==p)?" flow":""}" stroke="${n.c}" d="M${x1} ${p.y}C${m} ${p.y} ${m} ${n.y} ${x2} ${n.y}"/>`});
+ N.filter(vis).forEach(n=>{const w=W(n),ht=H(n),hit=query&&match(n);
+  const cls="node "+(n.lvl==0?"r":n.lvl==1?"b":"")+(sel==n?" sel":"")+(query?(hit?" hit":" dim"):(sel&&!(n==sel||n==sel.par||n.par==sel||(sel.lvl==2&&n==sel.par.par))?" dim":""));
+  h+=`<g class="${cls}" data-id="${n.id}" transform="translate(${n.x} ${n.y})"><g class="${intro?"in":""}" style="animation-delay:${n.id*50}ms"><rect x="${-w/2}" y="${-ht/2}" width="${w}" height="${ht}" rx="${ht/2}" ${n.lvl==1?`style="fill:${n.c}"`:n.lvl==2?`style="stroke:${n.c}"`:""}/><text y="5">${n.t}</text>`;
+  if(done[n.id])h+=`<circle class="ck" cx="${w/2-4}" cy="${-ht/2+2}" r="9"/><text class="ck-t" x="${w/2-4}" y="${-ht/2+6}">✓</text>`;
+  if(n.lvl==1){const sd=n.x>0?1:-1;h+=`<g class="tog" data-tog="${n.id}" transform="translate(${sd*(w/2+13)} 0)"><circle r="10"/><text y="5" text-anchor="middle">${n.open?"−":"+"}</text></g>`}
+  h+="</g></g>"});
+ g.innerHTML=h;intro=false;apply();prog()}
+function match(n){const q=query.toLowerCase();return(n.t+n.s+n.p.join(" ")).toLowerCase().includes(q)}
+function apply(){g.setAttribute("transform",`translate(${V.x} ${V.y}) scale(${V.k})`)}
+function fit(){const r=svg.getBoundingClientRect(),vs=N.filter(vis);let a=1e9,b=-1e9,c=1e9,d=-1e9;
+ vs.forEach(n=>{a=Math.min(a,n.x-W(n)/2);b=Math.max(b,n.x+W(n)/2);c=Math.min(c,n.y-30);d=Math.max(d,n.y+30)});
+ const k=Math.min(r.width/(b-a+90),r.height/(d-c+60),1.3);V={k,x:r.width/2-k*(a+b)/2,y:r.height/2-k*(c+d)/2};apply()}
+function zoom(f,cx,cy){const r=svg.getBoundingClientRect();cx=cx??r.width/2;cy=cy??r.height/2;const k=Math.min(3,Math.max(.25,V.k*f));V.x=cx-(cx-V.x)*k/V.k;V.y=cy-(cy-V.y)*k/V.k;V.k=k;apply()}
+function prog(){const t=N.length-1,d=Object.keys(done).length;$("pt").textContent=d+"/"+t+" studied";$("bar").firstChild.style.width=(100*d/t)+"%"}
+function show(n){sel=n;draw();const p=$("panel");
+ const rel=(n.par?[n.par]:[]).concat(n.ch).map(x=>`<button data-go="${x.id}">${x.t}</button>`).join("");
+ p.innerHTML=`<button class="x" id="cx" aria-label="Close">✕</button><span class="tag" style="background:${n.c}">${n.lvl==0?"Overview":n.lvl==1?"Main topic":"Concept"}</span><h2>${n.t}</h2><p>${n.s}</p><h3>Key points</h3><ul>${n.p.map(s=>`<li>${s}</li>`).join("")}</ul>${rel?`<h3>Related</h3><div class="chips">${rel}</div>`:""}${n.lvl?`<button id="done" class="${done[n.id]?"on":""}">${done[n.id]?"✓ Studied":"Mark as studied"}</button>`:""}`;
+ p.classList.add("open");$("cx").onclick=()=>{p.classList.remove("open");sel=null;draw()};
+ p.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{const t=N[+b.dataset.go];if(t.lvl==2)t.par.open=true;show(t);fly(t)});
+ const d=$("done");if(d)d.onclick=()=>{done[n.id]?delete done[n.id]:done[n.id]=1;try{localStorage.setItem("l5done",JSON.stringify(done))}catch(e){}show(n)}}
+let st=null,timer=null;
+svg.addEventListener("pointerdown",e=>{const nd=e.target.closest(".node"),tg=e.target.closest("[data-tog]");
+ st={x:e.clientX,y:e.clientY,vx:V.x,vy:V.y,nd,tg,moved:false,long:false};
+ if(nd&&!tg){const q=nd.querySelector("rect"),r=document.createElementNS(NS,"rect");["x","y","width","height","rx"].forEach(a=>r.setAttribute(a,q.getAttribute(a)));r.setAttribute("pathLength","1");r.setAttribute("class","ring");nd.firstChild.appendChild(r);st.ring=r;
+ timer=setTimeout(()=>{if(st&&!st.moved){st.long=true;if(navigator.vibrate)try{navigator.vibrate(15)}catch(_){}const n=N[+nd.dataset.id];show(n);fly(n);burst(n)}},450)}});
+addEventListener("pointermove",e=>{if(!st)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;
+ if(!st.moved&&Math.hypot(dx,dy)>6){st.moved=true;clearTimeout(timer);if(st.ring)st.ring.remove();svg.classList.add("pan")}
+ if(st.moved){V.x=st.vx+dx;V.y=st.vy+dy;apply()}});
+addEventListener("pointerup",()=>{if(!st)return;clearTimeout(timer);if(st.ring)st.ring.remove();svg.classList.remove("pan");
+ if(!st.moved&&!st.long){if(st.tg){const b=N[+st.tg.dataset.tog];b.open=!b.open;draw()}else if(st.nd){const n=N[+st.nd.dataset.id];show(n);fly(n)}}st=null});
+svg.addEventListener("wheel",e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(e.deltaY<0?1.12:.89,e.clientX-r.left,e.clientY-r.top)},{passive:false});
+$("zi").onclick=()=>zoom(1.2);$("zo").onclick=()=>zoom(.83);
+$("fit").onclick=fit;
+$("ex").onclick=()=>{T[3].forEach((_,i)=>N[root.ch[i].id].open=true);draw();fit()};
+$("co").onclick=()=>{root.ch.forEach(b=>b.open=false);draw();fit()};
+$("q").oninput=e=>{query=e.target.value.trim();if(query)root.ch.forEach(b=>b.open=true);draw();if(query)fit()};
+$("th").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"};
+function fly(n,k){if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;const r=svg.getBoundingClientRect(),open=$("panel").classList.contains("open"),mob=r.width<=640,K=k||Math.max(V.k,.9),tx=(r.width-(!mob&&open?360:0))/2-K*n.x,ty=(mob&&open?r.height*.22:r.height/2)-K*n.y,s={...V},t0=performance.now();
+ (function f(t){const p=Math.min(1,(t-t0)/600),e=1-Math.pow(1-p,3);V.k=s.k+(K-s.k)*e;V.x=s.x+(tx-s.x)*e;V.y=s.y+(ty-s.y)*e;apply();if(p<1)requestAnimationFrame(f)})(t0)}
+function burst(n){const c=document.createElementNS(NS,"circle");c.setAttribute("cx",n.x);c.setAttribute("cy",n.y);c.setAttribute("r",60);c.setAttribute("class","rip");c.style.stroke=n.c;g.appendChild(c);setTimeout(()=>c.remove(),900)}
+function tour(i){ti=(i+N.length)%N.length;const n=N[ti];if(n.lvl==2)n.par.open=true;show(n);fly(n,1.05);$("tb").style.display="flex";$("tc").textContent=(ti+1)+" / "+N.length}
+function endTour(){ti=-1;$("tb").style.display="none"}
+$("tr").onclick=()=>{if(ti<0){root.ch.forEach(b=>b.open=true);tour(0)}else endTour()};
+$("nx").onclick=()=>tour(ti+1);$("pv").onclick=()=>tour(ti-1);$("te").onclick=endTour;
+addEventListener("keydown",e=>{if(e.target.tagName=="INPUT")return;if(ti>=0&&e.key=="ArrowRight")tour(ti+1);else if(ti>=0&&e.key=="ArrowLeft")tour(ti-1);else if(e.key=="Escape"){endTour();$("panel").classList.remove("open");sel=null;draw()}else if(e.key=="f")fit()});
+svg.addEventListener("pointerover",e=>{const nd=e.target.closest(".node");if(!nd||st||e.pointerType=="touch"){tip.style.display="none";return}const n=N[+nd.dataset.id];tip.innerHTML="<b>"+n.t+"</b><br>"+n.s.split(". ")[0];tip.style.display="block"});
+svg.addEventListener("pointermove",e=>{tip.style.left=Math.min(e.clientX+14,innerWidth-250)+"px";tip.style.top=(e.clientY+16)+"px"});
+svg.addEventListener("pointerout",e=>{const t=e.relatedTarget;if(!t||!t.closest||!t.closest(".node"))tip.style.display="none"});
+addEventListener("resize",fit);draw();fit();
+</script>
+</body>
+</html>
